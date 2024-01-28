@@ -2,36 +2,37 @@
 
 Welcome to our repository! Here, we're all about image segmentation. Our star player is the `image_segmentation.ipynb` file, a Jupyter notebook that uses the YoLo model to perform image segmentation on a set of input images. 🖼️
 
-## 📁 File Structure
+## 📁 Files in this Repository
 
-Here's a quick rundown of what you'll find in `image_segmentation.ipynb`:
+### 📄 requirements.txt
 
-1. **Import Necessary Libraries**: This section imports the necessary libraries for the image segmentation task. 📚
-2. **Load the trained YoLo Model weights**: Here, we load the trained YoLo model weights from a file named "best.pt". 🏋️
-3. **Select the folder where input and output images are stored**: This section defines the directories for the input images and the output results. 🗂️
-4. **Load the input images and perform detection**: This section reads each image from the input directory, performs object detection using the YoLo model, and saves the results in the output directory. 🕵️
+This is the magic scroll 📜 that lists all the Python dependencies you need to run our software. It's like a shopping list for your Python environment! 🛒 Some of the major dependencies include numpy, pandas, matplotlib, opencv-python, torch, torchvision, and many others which are used by YOLO.
 
-## 📚 Dependencies
+To install all the dependencies listed in this file, just run the following command in your terminal:
 
-This file relies on the following external libraries:
+```bash
+pip install -r requirements.txt
+```
 
-1. **ultralytics**: A library for the YoLo model. 🚀
-2. **cv2**: OpenCV library for image processing. 📸
-3. **os**: Standard Python library for OS related operations. 💻
+🔔 **Note:** The versions of the dependencies are explicitly mentioned to ensure that the software runs as expected. If a different version of a dependency is used, it may cause unexpected behavior or errors.
 
-## 🚀 Usage Examples
+### 📓 image_segmentation.ipynb
 
-Here's a quick example of how to use the YoLo model for object detection on an image:
+This is where the magic happens! 🎩✨ This Jupyter notebook uses the YoLo model to detect objects such as houses, lawns, driveways, etc., in images. It reads images from an input folder, performs object detection on each image, and saves the results in an output folder.
+
+Here are some of the key functions/methods used in this notebook:
+
+1. `YOLO()`: This function from the ultralytics library is used to load the trained YoLo model weights.
+2. `os.listdir()`: This function from the os library is used to get the list of all files in the input folder.
+3. `cv2.imread()`: This function from the cv2 library is used to read an image file.
+4. `model()`: This method is used to perform object detection on an image.
+
+Here's a quick example of how to use it:
 
 ```python
-from ultralytics import YOLO
-import cv2
-import os
-
-model = YOLO("best.pt")
+model = YOLO("model/best.pt")
 input_folder = "input_images"
 output_folder = "Results"
-
 for filename in os.listdir(input_folder):
     input_image_path = os.path.join(input_folder, filename)
     image = cv2.imread(input_image_path)
@@ -45,8 +46,14 @@ for filename in os.listdir(input_folder):
     )
 ```
 
-## 📝 Notes
+🔔 **Notes:**
+1. The 'boxes' parameter in the model method is deprecated and will be removed in future versions of ultralytics. The 'show_boxes' parameter should be used instead.
+2. The results of the object detection are saved in the output folder with the same name as the input image file.
+3. Ensure that you are using python version 3.11.
+4. You can check your python version using the command
 
-The results of the object detection are saved in the output directory without bounding boxes or labels. The filename of each input image is used as the name for the corresponding result.
+    ```bash
+    python3 --version
+    ```
 
-So, what are you waiting for? Let's get segmenting! 🎉
+That's all folks! We hope you find this repository useful and exciting. Happy coding! 🎉👩‍💻👨‍💻🎉
